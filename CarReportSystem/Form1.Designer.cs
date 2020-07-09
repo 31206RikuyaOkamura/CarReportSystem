@@ -55,15 +55,26 @@
             this.btRegister = new System.Windows.Forms.Button();
             this.btUpDate = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
+            this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.新規入力ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.開くToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.名前を付けて保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 23);
+            this.label1.Location = new System.Drawing.Point(39, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
@@ -72,7 +83,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 70);
+            this.label2.Location = new System.Drawing.Point(27, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 0;
@@ -81,7 +92,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 117);
+            this.label3.Location = new System.Drawing.Point(26, 139);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 12);
             this.label3.TabIndex = 0;
@@ -90,7 +101,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 164);
+            this.label4.Location = new System.Drawing.Point(39, 186);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 12);
             this.label4.TabIndex = 0;
@@ -99,7 +110,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 211);
+            this.label5.Location = new System.Drawing.Point(26, 233);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 12);
             this.label5.TabIndex = 0;
@@ -108,7 +119,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 329);
+            this.label6.Location = new System.Drawing.Point(15, 351);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 0;
@@ -116,7 +127,7 @@
             // 
             // dtpCreatedDate
             // 
-            this.dtpCreatedDate.Location = new System.Drawing.Point(92, 18);
+            this.dtpCreatedDate.Location = new System.Drawing.Point(92, 40);
             this.dtpCreatedDate.Name = "dtpCreatedDate";
             this.dtpCreatedDate.Size = new System.Drawing.Size(200, 19);
             this.dtpCreatedDate.TabIndex = 1;
@@ -124,7 +135,7 @@
             // cbAtuthor
             // 
             this.cbAtuthor.FormattingEnabled = true;
-            this.cbAtuthor.Location = new System.Drawing.Point(92, 67);
+            this.cbAtuthor.Location = new System.Drawing.Point(92, 89);
             this.cbAtuthor.Name = "cbAtuthor";
             this.cbAtuthor.Size = new System.Drawing.Size(121, 20);
             this.cbAtuthor.TabIndex = 2;
@@ -132,7 +143,7 @@
             // cbName
             // 
             this.cbName.FormattingEnabled = true;
-            this.cbName.Location = new System.Drawing.Point(92, 161);
+            this.cbName.Location = new System.Drawing.Point(92, 183);
             this.cbName.Name = "cbName";
             this.cbName.Size = new System.Drawing.Size(121, 20);
             this.cbName.TabIndex = 2;
@@ -201,7 +212,7 @@
             // 
             // tbReport
             // 
-            this.tbReport.Location = new System.Drawing.Point(92, 208);
+            this.tbReport.Location = new System.Drawing.Point(92, 230);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
             this.tbReport.Size = new System.Drawing.Size(455, 115);
@@ -209,35 +220,41 @@
             // 
             // dgvCarData
             // 
+            this.dgvCarData.AllowUserToAddRows = false;
             this.dgvCarData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCarData.Location = new System.Drawing.Point(92, 329);
+            this.dgvCarData.Location = new System.Drawing.Point(92, 351);
             this.dgvCarData.Name = "dgvCarData";
+            this.dgvCarData.ReadOnly = true;
             this.dgvCarData.RowTemplate.Height = 21;
+            this.dgvCarData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarData.Size = new System.Drawing.Size(790, 150);
             this.dgvCarData.TabIndex = 5;
+            this.dgvCarData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarData_CellClick);
             // 
             // btRead
             // 
-            this.btRead.Location = new System.Drawing.Point(11, 355);
+            this.btRead.Location = new System.Drawing.Point(11, 377);
             this.btRead.Name = "btRead";
             this.btRead.Size = new System.Drawing.Size(63, 34);
             this.btRead.TabIndex = 6;
             this.btRead.Text = "開く...";
             this.btRead.UseVisualStyleBackColor = true;
+            this.btRead.Click += new System.EventHandler(this.btRead_Click);
             // 
             // btSave
             // 
-            this.btSave.Location = new System.Drawing.Point(11, 405);
+            this.btSave.Location = new System.Drawing.Point(11, 427);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(63, 34);
             this.btSave.TabIndex = 7;
             this.btSave.Text = "保存";
             this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(579, 23);
+            this.label7.Location = new System.Drawing.Point(579, 45);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 12);
             this.label7.TabIndex = 8;
@@ -251,7 +268,7 @@
             this.groupBox1.Controls.Add(this.rbMaker3);
             this.groupBox1.Controls.Add(this.rbMaker4);
             this.groupBox1.Controls.Add(this.rbMaker5);
-            this.groupBox1.Location = new System.Drawing.Point(92, 103);
+            this.groupBox1.Location = new System.Drawing.Point(92, 125);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(483, 34);
             this.groupBox1.TabIndex = 9;
@@ -260,26 +277,28 @@
             // 
             // btImageDelete
             // 
-            this.btImageDelete.Location = new System.Drawing.Point(751, 18);
+            this.btImageDelete.Location = new System.Drawing.Point(751, 40);
             this.btImageDelete.Name = "btImageDelete";
             this.btImageDelete.Size = new System.Drawing.Size(75, 23);
             this.btImageDelete.TabIndex = 10;
             this.btImageDelete.Text = "削除";
             this.btImageDelete.UseVisualStyleBackColor = true;
+            this.btImageDelete.Click += new System.EventHandler(this.btImageDelete_Click);
             // 
             // btImageOpen
             // 
-            this.btImageOpen.Location = new System.Drawing.Point(642, 18);
+            this.btImageOpen.Location = new System.Drawing.Point(642, 40);
             this.btImageOpen.Name = "btImageOpen";
             this.btImageOpen.Size = new System.Drawing.Size(75, 23);
             this.btImageOpen.TabIndex = 11;
             this.btImageOpen.Text = "開く...";
             this.btImageOpen.UseVisualStyleBackColor = true;
+            this.btImageOpen.Click += new System.EventHandler(this.btImageOpen_Click);
             // 
             // pbImage
             // 
             this.pbImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pbImage.Location = new System.Drawing.Point(590, 54);
+            this.pbImage.Location = new System.Drawing.Point(590, 76);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(260, 225);
             this.pbImage.TabIndex = 12;
@@ -287,7 +306,7 @@
             // 
             // btRegister
             // 
-            this.btRegister.Location = new System.Drawing.Point(581, 285);
+            this.btRegister.Location = new System.Drawing.Point(581, 307);
             this.btRegister.Name = "btRegister";
             this.btRegister.Size = new System.Drawing.Size(75, 23);
             this.btRegister.TabIndex = 13;
@@ -297,21 +316,85 @@
             // 
             // btUpDate
             // 
-            this.btUpDate.Location = new System.Drawing.Point(694, 285);
+            this.btUpDate.Location = new System.Drawing.Point(694, 307);
             this.btUpDate.Name = "btUpDate";
             this.btUpDate.Size = new System.Drawing.Size(75, 23);
             this.btUpDate.TabIndex = 13;
             this.btUpDate.Text = "修正";
             this.btUpDate.UseVisualStyleBackColor = true;
+            this.btUpDate.Click += new System.EventHandler(this.btUpDate_Click);
             // 
             // btDelete
             // 
-            this.btDelete.Location = new System.Drawing.Point(807, 285);
+            this.btDelete.Location = new System.Drawing.Point(807, 307);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(75, 23);
             this.btDelete.TabIndex = 13;
             this.btDelete.Text = "削除";
             this.btDelete.UseVisualStyleBackColor = true;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            // 
+            // ofdOpenData
+            // 
+            this.ofdOpenData.FileName = "openFileDialog1";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ファイルFToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(922, 24);
+            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // ファイルFToolStripMenuItem
+            // 
+            this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新規入力ToolStripMenuItem,
+            this.開くToolStripMenuItem,
+            this.保存ToolStripMenuItem,
+            this.名前を付けて保存ToolStripMenuItem,
+            this.終了ToolStripMenuItem});
+            this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
+            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
+            // 
+            // 新規入力ToolStripMenuItem
+            // 
+            this.新規入力ToolStripMenuItem.Name = "新規入力ToolStripMenuItem";
+            this.新規入力ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新規入力ToolStripMenuItem.Text = "新規入力(&N)";
+            this.新規入力ToolStripMenuItem.Click += new System.EventHandler(this.新規入力ToolStripMenuItem_Click);
+            // 
+            // 開くToolStripMenuItem
+            // 
+            this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
+            this.開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.開くToolStripMenuItem.Text = "開く...(&O)";
+            // 
+            // 保存ToolStripMenuItem
+            // 
+            this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
+            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存ToolStripMenuItem.Text = "保存";
+            // 
+            // 名前を付けて保存ToolStripMenuItem
+            // 
+            this.名前を付けて保存ToolStripMenuItem.Name = "名前を付けて保存ToolStripMenuItem";
+            this.名前を付けて保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.名前を付けて保存ToolStripMenuItem.Text = "名前を付けて保存...";
+            // 
+            // 終了ToolStripMenuItem
+            // 
+            this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
+            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了ToolStripMenuItem.Text = "終了(&X)";
+            this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -339,12 +422,17 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "試乗レポート管理システム";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,6 +467,16 @@
         private System.Windows.Forms.Button btRegister;
         private System.Windows.Forms.Button btUpDate;
         private System.Windows.Forms.Button btDelete;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog sfdSaveData;
+        private System.Windows.Forms.OpenFileDialog ofdOpenData;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 新規入力ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 開くToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 保存ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 名前を付けて保存ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 終了ToolStripMenuItem;
     }
 }
 
