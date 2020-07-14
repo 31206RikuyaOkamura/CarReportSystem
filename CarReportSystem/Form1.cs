@@ -22,7 +22,7 @@ namespace CarReportSystem
         public Form1()
         {
             InitializeComponent();
-            dgvCarData.DataSource = _Cars;
+            //dgvCarData.DataSource = _Cars;
         }
 
         private void btRegister_Click(object sender, EventArgs e)
@@ -202,13 +202,14 @@ namespace CarReportSystem
             }
         }
 
+        /*
         private void dgvCarData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 dtpCreatedDate.Value = _Cars[e.RowIndex].CreatedDate;
                 cbAtuthor.Text = _Cars[e.RowIndex].Atuthor;
-                dgvMaker(_Cars[e.RowIndex].Maker);
+                
                 cbName.Text = _Cars[e.RowIndex].Name;
                 tbReport.Text = _Cars[e.RowIndex].Report;
                 pbImage.Image = _Cars[e.RowIndex].Picture;
@@ -227,32 +228,33 @@ namespace CarReportSystem
                 }
             }
         }
+        */
 
-        private void dgvMaker(CarReport.CarMaker maker)
+        private void dgvMaker(string maker)
         {
             switch (maker)
             {
-                case CarReport.CarMaker.トヨタ:
+                case "トヨタ":
                     rbMaker1.Checked = true;
                     break;
 
-                case CarReport.CarMaker.日産:
+                case "日産":
                     rbMaker2.Checked = true;
                     break;
 
-                case CarReport.CarMaker.ホンダ:
+                case "ホンダ":
                     rbMaker3.Checked = true;
                     break;
 
-                case CarReport.CarMaker.スバル:
+                case "スバル":
                     rbMaker4.Checked = true;
                     break;
 
-                case CarReport.CarMaker.外車:
+                case "外車":
                     rbMaker5.Checked = true;
                     break;
 
-                case CarReport.CarMaker.その他:
+                case "その他":
                     rbMaker6.Checked = true;
                     break;
             }
@@ -283,52 +285,16 @@ namespace CarReportSystem
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dgvCarData.Columns[0].Visible = false;
             btMask();
             btImageDelete.Enabled = false;
         }
 
         private void btRead_Click(object sender, EventArgs e)
         {
-            //オープンファイルダイアログを表示
-            if (ofdOpenData.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
-                {
-                    try
-                    {
-                        BinaryFormatter formatter = new BinaryFormatter();
-
-                        //逆シリアル化して読み込む
-                        _Cars = (BindingList<CarReport>)formatter.Deserialize(fs);
-
-                        dgvCarData.DataSource = _Cars;
-
-                        dtpCreatedDate.Value = _Cars[0].CreatedDate;
-                        cbAtuthor.Text = _Cars[0].Atuthor;
-                        dgvMaker(_Cars[0].Maker);
-                        cbName.Text = _Cars[0].Name;
-                        tbReport.Text = _Cars[0].Report;
-                        pbImage.Image = _Cars[0].Picture;
-
-                        //ピクチャーボックスのサイズに画像を調整
-                        pbImage.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                        if (pbImage.Image != null)
-                        {
-                            btImageDelete.Enabled = true;
-                        }
-                        else
-                        {
-                            btImageDelete.Enabled = false;
-                        }
-                    }
-                    catch (SerializationException se)
-                    {
-                        Console.WriteLine("Failed to deserialize. Reason: " + se.Message);
-                        throw;
-                    }
-                }
-            }
+            // TODO: このコード行はデータを 'infosys202023DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableAdapter.Fill(this.infosys202023DataSet.CarReport);
+            dgvCarData.Columns[0].Visible = false;
         }
 
         private void btSave_Click(object sender, EventArgs e)
@@ -393,7 +359,7 @@ namespace CarReportSystem
 
                         dtpCreatedDate.Value = _Cars[0].CreatedDate;
                         cbAtuthor.Text = _Cars[0].Atuthor;
-                        dgvMaker(_Cars[0].Maker);
+                        //dgvMaker(_Cars[0].Maker);
                         cbName.Text = _Cars[0].Name;
                         tbReport.Text = _Cars[0].Report;
                         pbImage.Image = _Cars[0].Picture;
@@ -442,6 +408,22 @@ namespace CarReportSystem
                         MessageBox.Show("正しいファイルを選択してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
+            }
+        }
+
+        private void carReportBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202023DataSet);
+
+        }
+
+        private void dgvCarData_Click(object sender, EventArgs e)
+        {
+            if(dgvCarData.Rows.Count > 0)
+            {
+                dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
             }
         }
     }
