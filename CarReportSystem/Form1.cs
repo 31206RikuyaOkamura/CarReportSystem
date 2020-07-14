@@ -374,5 +374,75 @@ namespace CarReportSystem
         {
             Application.Exit();
         }
+
+        private void 開くToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //オープンファイルダイアログを表示
+            if (ofdOpenData.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
+                {
+                    try
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+
+                        //逆シリアル化して読み込む
+                        _Cars = (BindingList<CarReport>)formatter.Deserialize(fs);
+
+                        dgvCarData.DataSource = _Cars;
+
+                        dtpCreatedDate.Value = _Cars[0].CreatedDate;
+                        cbAtuthor.Text = _Cars[0].Atuthor;
+                        dgvMaker(_Cars[0].Maker);
+                        cbName.Text = _Cars[0].Name;
+                        tbReport.Text = _Cars[0].Report;
+                        pbImage.Image = _Cars[0].Picture;
+
+                        //ピクチャーボックスのサイズに画像を調整
+                        pbImage.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        if (pbImage.Image != null)
+                        {
+                            btImageDelete.Enabled = true;
+                        }
+                        else
+                        {
+                            btImageDelete.Enabled = false;
+                        }
+                    }
+                    catch (SerializationException se)
+                    {
+                        Console.WriteLine("Failed to deserialize. Reason: " + se.Message);
+                        throw;
+                    }
+                }
+            }
+        }
+
+        private void 名前を付けて保存ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //セーブファイルダイアログを表示
+            if (sfdSaveData.ShowDialog() == DialogResult.OK)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                //FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create);
+
+                //クローズされる
+                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
+                {
+                    try
+                    {
+                        //シリアル化して保存
+                        formatter.Serialize(fs, _Cars);
+                    }
+                    catch (SerializationException se)
+                    {
+                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
+                        MessageBox.Show("正しいファイルを選択してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+            }
+        }
     }
 }
