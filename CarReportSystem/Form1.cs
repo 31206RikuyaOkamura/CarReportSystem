@@ -143,6 +143,8 @@ namespace CarReportSystem
                 pbImage.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 btImageDelete.Enabled = true;
+
+                
             }
         }
 
@@ -158,15 +160,15 @@ namespace CarReportSystem
 
         private void btMask()
         {
-            if (_Cars.Count == 0)
-            {
-                btUpDate.Enabled = false;
-                btDelete.Enabled = false;
-            }
-            else
+            if (dgvCarData.Rows.Count > 0)
             {
                 btUpDate.Enabled = true;
                 btDelete.Enabled = true;
+            }
+            else
+            {
+                btUpDate.Enabled = false;
+                btDelete.Enabled = false;
             }
         }
 
@@ -178,28 +180,15 @@ namespace CarReportSystem
 
         private void btUpDate_Click(object sender, EventArgs e)
         {
-            if (cell >= 0)
+
+            if (pbImage.Image != null)
             {
-                _Cars[cell].CreatedDate = dtpCreatedDate.Value;
-                _Cars[cell].Atuthor = cbAtuthor.Text;
-                _Cars[cell].Maker = CarMakerCheck();
-                _Cars[cell].Name = cbName.Text;
-                _Cars[cell].Report = tbReport.Text;
-                _Cars[cell].Picture = pbImage.Image;
-
-                dgvCarData.Refresh(); //データグリッドビューの再描画
-
-                if (pbImage.Image != null)
-                {
-                    btImageDelete.Enabled = true;
-                }
-                else
-                {
-                    btImageDelete.Enabled = false;
-                }
-
-                btMask();
+                dgvCarData.CurrentRow.Cells[6].Value = ImageToByteArray(pbImage.Image);
             }
+
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202023DataSet);
         }
 
         /*
@@ -295,6 +284,10 @@ namespace CarReportSystem
             // TODO: このコード行はデータを 'infosys202023DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableAdapter.Fill(this.infosys202023DataSet.CarReport);
             dgvCarData.Columns[0].Visible = false;
+
+            dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
+
+            btMask();
         }
 
         private void btSave_Click(object sender, EventArgs e)
@@ -424,7 +417,24 @@ namespace CarReportSystem
             if(dgvCarData.Rows.Count > 0)
             {
                 dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
+                btMask();
             }
+        }
+
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] byteData)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(byteData);
+            return img;
+        }
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] byteData = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return byteData;
         }
     }
 }
