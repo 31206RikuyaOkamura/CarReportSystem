@@ -32,7 +32,7 @@ namespace CarReportSystem
             {
                 CreatedDate = dtpCreatedDate.Value,
                 Atuthor = cbAtuthor.Text,
-                Maker = CarMakerCheck(),
+                //Maker = CarMakerCheck(),
                 Name = cbName.Text,
                 Report = tbReport.Text,
                 Picture = pbImage.Image
@@ -83,7 +83,7 @@ namespace CarReportSystem
             }
         }
 
-        private CarReport.CarMaker CarMakerCheck()
+        private string CarMakerCheck()
         {
             // 指定したグループ内のラジオボタンでチェックされている物を取り出す
             //var RadioButtonChecked_InGroup = groupBox1.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked);
@@ -101,25 +101,25 @@ namespace CarReportSystem
             switch (maker)
             {
                 case "トヨタ":
-                    return CarReport.CarMaker.トヨタ;
+                    return "トヨタ";
 
                 case "日産":
-                    return CarReport.CarMaker.日産;
+                    return "日産";
 
                 case "ホンダ":
-                    return CarReport.CarMaker.ホンダ;
+                    return "ホンダ";
 
                 case "スバル":
-                    return CarReport.CarMaker.スバル;
+                    return "スバル";
 
                 case "外車":
-                    return CarReport.CarMaker.外車;
+                    return "外車";
 
                 case "その他":
-                    return CarReport.CarMaker.その他;
+                    return "その他";
 
                 default:
-                    return CarReport.CarMaker.DEFAULT;
+                    return "DEFAULT";
             }
         }
 
@@ -144,7 +144,7 @@ namespace CarReportSystem
 
                 btImageDelete.Enabled = true;
 
-                
+
             }
         }
 
@@ -180,44 +180,17 @@ namespace CarReportSystem
 
         private void btUpDate_Click(object sender, EventArgs e)
         {
-
-            if (pbImage.Image != null)
-            {
-                dgvCarData.CurrentRow.Cells[6].Value = ImageToByteArray(pbImage.Image);
-            }
+            dgvCarData.CurrentRow.Cells[1].Value = dtpCreatedDate.Value;
+            dgvCarData.CurrentRow.Cells[2].Value = cbAtuthor.Text;
+            dgvCarData.CurrentRow.Cells[3].Value = CarMakerCheck();
+            dgvCarData.CurrentRow.Cells[4].Value = cbName.Text;
+            dgvCarData.CurrentRow.Cells[5].Value = tbReport.Text;
+            dgvCarData.CurrentRow.Cells[6].Value = ImageToByteArray(pbImage.Image);
 
             this.Validate();
             this.carReportBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202023DataSet);
         }
-
-        /*
-        private void dgvCarData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                dtpCreatedDate.Value = _Cars[e.RowIndex].CreatedDate;
-                cbAtuthor.Text = _Cars[e.RowIndex].Atuthor;
-                
-                cbName.Text = _Cars[e.RowIndex].Name;
-                tbReport.Text = _Cars[e.RowIndex].Report;
-                pbImage.Image = _Cars[e.RowIndex].Picture;
-
-                cell = e.RowIndex;
-
-                btMask();
-
-                if (pbImage.Image != null)
-                {
-                    btImageDelete.Enabled = true;
-                }
-                else
-                {
-                    btImageDelete.Enabled = false;
-                }
-            }
-        }
-        */
 
         private void dgvMaker(string maker)
         {
@@ -285,7 +258,10 @@ namespace CarReportSystem
             this.carReportTableAdapter.Fill(this.infosys202023DataSet.CarReport);
             dgvCarData.Columns[0].Visible = false;
 
+            pbImage.SizeMode = PictureBoxSizeMode.StretchImage;
+
             dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
+            setValue();
 
             btMask();
         }
@@ -414,9 +390,10 @@ namespace CarReportSystem
 
         private void dgvCarData_Click(object sender, EventArgs e)
         {
-            if(dgvCarData.Rows.Count > 0)
+            if (dgvCarData.Rows.Count > 0)
             {
-                dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
+                btImageDelete.Enabled = false;
+                setValue();
                 btMask();
             }
         }
@@ -435,6 +412,20 @@ namespace CarReportSystem
             ImageConverter imgconv = new ImageConverter();
             byte[] byteData = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
             return byteData;
+        }
+
+        private void setValue()
+        {
+            dtpCreatedDate.Value = (DateTime)dgvCarData.CurrentRow.Cells[1].Value;
+            cbAtuthor.Text = dgvCarData.CurrentRow.Cells[2].Value.ToString();
+            dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
+            cbName.Text = dgvCarData.CurrentRow.Cells[4].Value.ToString();
+            tbReport.Text = dgvCarData.CurrentRow.Cells[5].Value.ToString();
+            if (dgvCarData.CurrentRow.Cells[6].Value.ToString() != "")
+            {
+                pbImage.Image = ByteArrayToImage((byte[])dgvCarData.CurrentRow.Cells[6].Value);
+                btImageDelete.Enabled = true;
+            }
         }
     }
 }

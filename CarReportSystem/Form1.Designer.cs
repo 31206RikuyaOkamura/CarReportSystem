@@ -141,7 +141,6 @@
             // 
             // dtpCreatedDate
             // 
-            this.dtpCreatedDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carReportBindingSource, "CreatedDate", true));
             this.dtpCreatedDate.Location = new System.Drawing.Point(92, 40);
             this.dtpCreatedDate.Name = "dtpCreatedDate";
             this.dtpCreatedDate.Size = new System.Drawing.Size(200, 19);
@@ -159,7 +158,6 @@
             // 
             // cbAtuthor
             // 
-            this.cbAtuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carReportBindingSource, "Author", true));
             this.cbAtuthor.FormattingEnabled = true;
             this.cbAtuthor.Location = new System.Drawing.Point(92, 89);
             this.cbAtuthor.Name = "cbAtuthor";
@@ -168,7 +166,6 @@
             // 
             // cbName
             // 
-            this.cbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carReportBindingSource, "Name", true));
             this.cbName.FormattingEnabled = true;
             this.cbName.Location = new System.Drawing.Point(92, 183);
             this.cbName.Name = "cbName";
@@ -239,7 +236,6 @@
             // 
             // tbReport
             // 
-            this.tbReport.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carReportBindingSource, "Report", true));
             this.tbReport.Location = new System.Drawing.Point(92, 230);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
@@ -252,7 +248,7 @@
             this.btRead.Name = "btRead";
             this.btRead.Size = new System.Drawing.Size(63, 34);
             this.btRead.TabIndex = 6;
-            this.btRead.Text = "接続...";
+            this.btRead.Text = "接続";
             this.btRead.UseVisualStyleBackColor = true;
             this.btRead.Click += new System.EventHandler(this.btRead_Click);
             // 
