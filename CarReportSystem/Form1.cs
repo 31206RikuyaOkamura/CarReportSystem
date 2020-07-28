@@ -27,7 +27,7 @@ namespace CarReportSystem
 
         private void btRegister_Click(object sender, EventArgs e)
         {
-
+            /*
             CarReport car = new CarReport
             {
                 CreatedDate = dtpCreatedDate.Value,
@@ -62,7 +62,7 @@ namespace CarReportSystem
             inputItemAllClear();
 
             btImageDelete.Enabled = false;
-
+            */
         }
 
         private void setConboBoxAtuthor(string maker)
@@ -185,7 +185,14 @@ namespace CarReportSystem
             dgvCarData.CurrentRow.Cells[3].Value = CarMakerCheck();
             dgvCarData.CurrentRow.Cells[4].Value = cbName.Text;
             dgvCarData.CurrentRow.Cells[5].Value = tbReport.Text;
-            dgvCarData.CurrentRow.Cells[6].Value = ImageToByteArray(pbImage.Image);
+            if (pbImage.Image == null)
+            {
+                dgvCarData.CurrentRow.Cells[6].Value = null;
+            }
+            else
+            {
+                dgvCarData.CurrentRow.Cells[6].Value = ImageToByteArray(pbImage.Image);
+            }
 
             this.Validate();
             this.carReportBindingSource.EndEdit();
@@ -250,6 +257,7 @@ namespace CarReportSystem
             dgvCarData.Columns[0].Visible = false;
             btMask();
             btImageDelete.Enabled = false;
+
         }
 
         private void btRead_Click(object sender, EventArgs e)
@@ -260,7 +268,6 @@ namespace CarReportSystem
 
             pbImage.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
             setValue();
 
             btMask();
@@ -268,28 +275,9 @@ namespace CarReportSystem
 
         private void btSave_Click(object sender, EventArgs e)
         {
-            //セーブファイルダイアログを表示
-            if (sfdSaveData.ShowDialog() == DialogResult.OK)
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-
-                //FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create);
-
-                //クローズされる
-                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
-                {
-                    try
-                    {
-                        //シリアル化して保存
-                        formatter.Serialize(fs, _Cars);
-                    }
-                    catch (SerializationException se)
-                    {
-                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
-                        MessageBox.Show("正しいファイルを選択してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
-            }
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202023DataSet);
         }
 
         private void 新規入力ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -421,11 +409,48 @@ namespace CarReportSystem
             dgvMaker(dgvCarData.CurrentRow.Cells[3].Value.ToString());
             cbName.Text = dgvCarData.CurrentRow.Cells[4].Value.ToString();
             tbReport.Text = dgvCarData.CurrentRow.Cells[5].Value.ToString();
-            if (dgvCarData.CurrentRow.Cells[6].Value.ToString() != "")
+            if (dgvCarData.CurrentRow.Cells[6].Value.ToString() == "")
+            {
+                pbImage.Image = null;
+            }
+            else
             {
                 pbImage.Image = ByteArrayToImage((byte[])dgvCarData.CurrentRow.Cells[6].Value);
                 btImageDelete.Enabled = true;
             }
         }
+
+        private void btSearchExe_Click(object sender, EventArgs e)
+        {
+            
+            string maker = "";
+            foreach (RadioButton item in groupBox2.Controls)
+            {
+                if (item.Checked)
+                {
+                    maker = item.Name;
+                }
+            }
+
+            switch (maker)
+            {
+                case "rbSearch1":
+                    this.carReportTableAdapter.FillByCreatedDate(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString());
+                    break;
+
+                case "rbSearch2":
+                    this.carReportTableAdapter.FillByCarName(this.infosys202023DataSet.CarReport, tbSearchCarName.Text);
+                    break;
+
+                case "rbSearch3":
+
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
     }
 }
+
