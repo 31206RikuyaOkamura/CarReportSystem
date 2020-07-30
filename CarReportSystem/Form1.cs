@@ -83,14 +83,14 @@ namespace CarReportSystem
             }
         }
 
-        private string CarMakerCheck()
+        private string CarMakerCheck(GroupBox box)
         {
             // 指定したグループ内のラジオボタンでチェックされている物を取り出す
             //var RadioButtonChecked_InGroup = groupBox1.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked);
             //return (CarReport.CarMaker)int.Parse(selectMaker.Tag.ToString());
 
             string maker = "";
-            foreach (RadioButton item in groupBox1.Controls)
+            foreach (RadioButton item in box.Controls)
             {
                 if (item.Checked)
                 {
@@ -182,7 +182,7 @@ namespace CarReportSystem
         {
             dgvCarData.CurrentRow.Cells[1].Value = dtpCreatedDate.Value;
             dgvCarData.CurrentRow.Cells[2].Value = cbAtuthor.Text;
-            dgvCarData.CurrentRow.Cells[3].Value = CarMakerCheck();
+            dgvCarData.CurrentRow.Cells[3].Value = CarMakerCheck(groupBox1);
             dgvCarData.CurrentRow.Cells[4].Value = cbName.Text;
             dgvCarData.CurrentRow.Cells[5].Value = tbReport.Text;
             if (pbImage.Image == null)
@@ -422,33 +422,46 @@ namespace CarReportSystem
 
         private void btSearchExe_Click(object sender, EventArgs e)
         {
-            
-            string maker = "";
-            foreach (RadioButton item in groupBox2.Controls)
+            CarMakerCheck(groupBox3);
+            //OR検索
+            if (rbSearchOr.Checked)
             {
-                if (item.Checked)
+                if (tbSearchCarName.Text == "" && tbSearchAtuthor.Text == "")
                 {
-                    maker = item.Name;
+                    this.carReportTableAdapter.FillByOrDefault(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3));
+                }
+                else if (tbSearchCarName.Text == "")
+                {
+                    this.carReportTableAdapter.FillByOrAuthor(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchAtuthor.Text);
+                }
+                else if (tbSearchAtuthor.Text == "")
+                {
+                    this.carReportTableAdapter.FillByOrCarName(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchCarName.Text);
+                }
+                else
+                {
+                    this.carReportTableAdapter.FillByOrAll(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchCarName.Text, tbSearchAtuthor.Text);
                 }
             }
-
-            switch (maker)
+            //AND検索
+            else
             {
-                case "rbSearch1":
-                    this.carReportTableAdapter.FillByCreatedDate(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString());
-                    break;
-
-                case "rbSearch2":
-                    this.carReportTableAdapter.FillByCarName(this.infosys202023DataSet.CarReport, tbSearchCarName.Text);
-                    break;
-
-                case "rbSearch3":
-
-                    break;
-
-                default:
-
-                    break;
+                if (tbSearchCarName.Text == "" && tbSearchAtuthor.Text == "")
+                {
+                    this.carReportTableAdapter.FillByAndDefault(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3));
+                }
+                else if (tbSearchCarName.Text == "")
+                {
+                    this.carReportTableAdapter.FillByAndAuthor(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchAtuthor.Text);
+                }
+                else if (tbSearchAtuthor.Text == "")
+                {
+                    this.carReportTableAdapter.FillByAndCarName(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchCarName.Text);
+                }
+                else
+                {
+                    this.carReportTableAdapter.FillByAndAll(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchCarName.Text, tbSearchAtuthor.Text);
+                }
             }
         }
     }

@@ -59,17 +59,25 @@
             this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
             this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.新規入力ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.開くToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.名前を付けて保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvCarData = new System.Windows.Forms.DataGridView();
-            this.tbSearchCarName = new System.Windows.Forms.TextBox();
+            this.tbSearchAtuthor = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbSearchOr = new System.Windows.Forms.RadioButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.dateTimeSearch = new System.Windows.Forms.DateTimePicker();
+            this.rbSearchAnd = new System.Windows.Forms.RadioButton();
             this.btSearchExe = new System.Windows.Forms.Button();
+            this.tbSearchCarName = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,15 +89,11 @@
             this.infosys202023DataSet = new CarReportSystem.infosys202023DataSet();
             this.carReportTableAdapter = new CarReportSystem.infosys202023DataSetTableAdapters.CarReportTableAdapter();
             this.tableAdapterManager = new CarReportSystem.infosys202023DataSetTableAdapters.TableAdapterManager();
-            this.dateTimeSearch = new System.Windows.Forms.DateTimePicker();
-            this.rbSearch1 = new System.Windows.Forms.RadioButton();
-            this.rbSearch2 = new System.Windows.Forms.RadioButton();
-            this.rbSearch3 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202023DataSet)).BeginInit();
             this.SuspendLayout();
@@ -354,59 +358,11 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルFToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1214, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1242, 24);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // ファイルFToolStripMenuItem
-            // 
-            this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新規入力ToolStripMenuItem,
-            this.開くToolStripMenuItem,
-            this.保存ToolStripMenuItem,
-            this.名前を付けて保存ToolStripMenuItem,
-            this.終了ToolStripMenuItem});
-            this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
-            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
-            // 
-            // 新規入力ToolStripMenuItem
-            // 
-            this.新規入力ToolStripMenuItem.Name = "新規入力ToolStripMenuItem";
-            this.新規入力ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.新規入力ToolStripMenuItem.Text = "新規入力(&N)";
-            this.新規入力ToolStripMenuItem.Click += new System.EventHandler(this.新規入力ToolStripMenuItem_Click);
-            // 
-            // 開くToolStripMenuItem
-            // 
-            this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.開くToolStripMenuItem.Text = "開く...(&O)";
-            this.開くToolStripMenuItem.Click += new System.EventHandler(this.開くToolStripMenuItem_Click);
-            // 
-            // 保存ToolStripMenuItem
-            // 
-            this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.保存ToolStripMenuItem.Text = "保存";
-            // 
-            // 名前を付けて保存ToolStripMenuItem
-            // 
-            this.名前を付けて保存ToolStripMenuItem.Name = "名前を付けて保存ToolStripMenuItem";
-            this.名前を付けて保存ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.名前を付けて保存ToolStripMenuItem.Text = "名前を付けて保存...";
-            this.名前を付けて保存ToolStripMenuItem.Click += new System.EventHandler(this.名前を付けて保存ToolStripMenuItem_Click);
-            // 
-            // 終了ToolStripMenuItem
-            // 
-            this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.終了ToolStripMenuItem.Text = "終了(&X)";
-            this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
             // 
             // dgvCarData
             // 
@@ -432,48 +388,192 @@
             this.dgvCarData.TabIndex = 22;
             this.dgvCarData.Click += new System.EventHandler(this.dgvCarData_Click);
             // 
-            // tbSearchCarName
+            // tbSearchAtuthor
             // 
-            this.tbSearchCarName.Location = new System.Drawing.Point(82, 49);
-            this.tbSearchCarName.Name = "tbSearchCarName";
-            this.tbSearchCarName.Size = new System.Drawing.Size(152, 19);
-            this.tbSearchCarName.TabIndex = 23;
+            this.tbSearchAtuthor.Location = new System.Drawing.Point(61, 46);
+            this.tbSearchAtuthor.Name = "tbSearchAtuthor";
+            this.tbSearchAtuthor.Size = new System.Drawing.Size(180, 19);
+            this.tbSearchAtuthor.TabIndex = 23;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 52);
+            this.label8.Location = new System.Drawing.Point(8, 49);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 12);
+            this.label8.Size = new System.Drawing.Size(47, 12);
             this.label8.TabIndex = 0;
-            this.label8.Text = "車名：";
+            this.label8.Text = "記録者：";
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.groupBox2.Controls.Add(this.rbSearch3);
-            this.groupBox2.Controls.Add(this.rbSearch2);
-            this.groupBox2.Controls.Add(this.rbSearch1);
+            this.groupBox2.Controls.Add(this.rbSearchOr);
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.dateTimeSearch);
+            this.groupBox2.Controls.Add(this.rbSearchAnd);
             this.groupBox2.Controls.Add(this.btSearchExe);
             this.groupBox2.Controls.Add(this.tbSearchCarName);
+            this.groupBox2.Controls.Add(this.tbSearchAtuthor);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(908, 76);
+            this.groupBox2.Location = new System.Drawing.Point(886, 76);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(254, 169);
+            this.groupBox2.Size = new System.Drawing.Size(298, 225);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "検索";
             // 
+            // rbSearchOr
+            // 
+            this.rbSearchOr.AutoSize = true;
+            this.rbSearchOr.Location = new System.Drawing.Point(178, 165);
+            this.rbSearchOr.Name = "rbSearchOr";
+            this.rbSearchOr.Size = new System.Drawing.Size(63, 16);
+            this.rbSearchOr.TabIndex = 27;
+            this.rbSearchOr.TabStop = true;
+            this.rbSearchOr.Text = "OR検索";
+            this.rbSearchOr.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Controls.Add(this.radioButton3);
+            this.groupBox3.Controls.Add(this.radioButton4);
+            this.groupBox3.Controls.Add(this.radioButton5);
+            this.groupBox3.Controls.Add(this.radioButton6);
+            this.groupBox3.Location = new System.Drawing.Point(61, 71);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(215, 59);
+            this.groupBox3.TabIndex = 28;
+            this.groupBox3.TabStop = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(157, 34);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(54, 16);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.Text = "その他";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 12);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(47, 16);
+            this.radioButton2.TabIndex = 3;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "トヨタ";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(83, 12);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(47, 16);
+            this.radioButton3.TabIndex = 3;
+            this.radioButton3.Text = "日産";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(160, 12);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(51, 16);
+            this.radioButton4.TabIndex = 3;
+            this.radioButton4.Text = "ホンダ";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(6, 34);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(52, 16);
+            this.radioButton5.TabIndex = 3;
+            this.radioButton5.Text = "スバル";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(83, 34);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(47, 16);
+            this.radioButton6.TabIndex = 3;
+            this.radioButton6.Text = "外車";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // dateTimeSearch
+            // 
+            this.dateTimeSearch.Location = new System.Drawing.Point(61, 19);
+            this.dateTimeSearch.Name = "dateTimeSearch";
+            this.dateTimeSearch.Size = new System.Drawing.Size(180, 19);
+            this.dateTimeSearch.TabIndex = 25;
+            // 
+            // rbSearchAnd
+            // 
+            this.rbSearchAnd.AutoSize = true;
+            this.rbSearchAnd.Checked = true;
+            this.rbSearchAnd.Location = new System.Drawing.Point(61, 165);
+            this.rbSearchAnd.Name = "rbSearchAnd";
+            this.rbSearchAnd.Size = new System.Drawing.Size(71, 16);
+            this.rbSearchAnd.TabIndex = 26;
+            this.rbSearchAnd.TabStop = true;
+            this.rbSearchAnd.Text = "AND検索";
+            this.rbSearchAnd.UseVisualStyleBackColor = true;
+            // 
             // btSearchExe
             // 
-            this.btSearchExe.Location = new System.Drawing.Point(82, 140);
+            this.btSearchExe.Location = new System.Drawing.Point(107, 196);
             this.btSearchExe.Name = "btSearchExe";
             this.btSearchExe.Size = new System.Drawing.Size(75, 23);
             this.btSearchExe.TabIndex = 24;
             this.btSearchExe.Text = "実行";
             this.btSearchExe.UseVisualStyleBackColor = true;
             this.btSearchExe.Click += new System.EventHandler(this.btSearchExe_Click);
+            // 
+            // tbSearchCarName
+            // 
+            this.tbSearchCarName.Location = new System.Drawing.Point(61, 140);
+            this.tbSearchCarName.Name = "tbSearchCarName";
+            this.tbSearchCarName.Size = new System.Drawing.Size(180, 19);
+            this.tbSearchCarName.TabIndex = 23;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(20, 24);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 12);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "日付：";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(20, 143);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 12);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "車名：";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 71);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 12);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "メーカー：";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -549,48 +649,11 @@
             this.tableAdapterManager.CarReportTableAdapter = this.carReportTableAdapter;
             this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202023DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // dateTimeSearch
-            // 
-            this.dateTimeSearch.Location = new System.Drawing.Point(34, 18);
-            this.dateTimeSearch.Name = "dateTimeSearch";
-            this.dateTimeSearch.Size = new System.Drawing.Size(200, 19);
-            this.dateTimeSearch.TabIndex = 25;
-            // 
-            // rbSearch1
-            // 
-            this.rbSearch1.AutoSize = true;
-            this.rbSearch1.Location = new System.Drawing.Point(6, 21);
-            this.rbSearch1.Name = "rbSearch1";
-            this.rbSearch1.Size = new System.Drawing.Size(14, 13);
-            this.rbSearch1.TabIndex = 26;
-            this.rbSearch1.TabStop = true;
-            this.rbSearch1.UseVisualStyleBackColor = true;
-            // 
-            // rbSearch2
-            // 
-            this.rbSearch2.AutoSize = true;
-            this.rbSearch2.Location = new System.Drawing.Point(6, 52);
-            this.rbSearch2.Name = "rbSearch2";
-            this.rbSearch2.Size = new System.Drawing.Size(14, 13);
-            this.rbSearch2.TabIndex = 27;
-            this.rbSearch2.TabStop = true;
-            this.rbSearch2.UseVisualStyleBackColor = true;
-            // 
-            // rbSearch3
-            // 
-            this.rbSearch3.AutoSize = true;
-            this.rbSearch3.Location = new System.Drawing.Point(6, 83);
-            this.rbSearch3.Name = "rbSearch3";
-            this.rbSearch3.Size = new System.Drawing.Size(14, 13);
-            this.rbSearch3.TabIndex = 28;
-            this.rbSearch3.TabStop = true;
-            this.rbSearch3.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1214, 580);
+            this.ClientSize = new System.Drawing.Size(1242, 580);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dgvCarData);
             this.Controls.Add(this.btDelete);
@@ -621,11 +684,11 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202023DataSet)).EndInit();
             this.ResumeLayout(false);
@@ -665,12 +728,6 @@
         private System.Windows.Forms.SaveFileDialog sfdSaveData;
         private System.Windows.Forms.OpenFileDialog ofdOpenData;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 新規入力ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 開くToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 保存ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 名前を付けて保存ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 終了ToolStripMenuItem;
         private infosys202023DataSet infosys202023DataSet;
         private System.Windows.Forms.BindingSource carReportBindingSource;
         private infosys202023DataSetTableAdapters.CarReportTableAdapter carReportTableAdapter;
@@ -683,14 +740,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.TextBox tbSearchCarName;
+        private System.Windows.Forms.TextBox tbSearchAtuthor;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btSearchExe;
         private System.Windows.Forms.DateTimePicker dateTimeSearch;
-        private System.Windows.Forms.RadioButton rbSearch3;
-        private System.Windows.Forms.RadioButton rbSearch2;
-        private System.Windows.Forms.RadioButton rbSearch1;
+        private System.Windows.Forms.RadioButton rbSearchOr;
+        private System.Windows.Forms.RadioButton rbSearchAnd;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.TextBox tbSearchCarName;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
     }
 }
 
