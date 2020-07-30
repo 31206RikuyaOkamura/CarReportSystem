@@ -432,7 +432,7 @@ namespace CarReportSystem
                 }
                 else if (tbSearchCarName.Text == "")
                 {
-                    this.carReportTableAdapter.FillByOrAuthor(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchAtuthor.Text);
+                    this.carReportTableAdapter.FillByOrAuthor(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), tbSearchAtuthor.Text, CarMakerCheck(groupBox3));
                 }
                 else if (tbSearchAtuthor.Text == "")
                 {
@@ -440,7 +440,7 @@ namespace CarReportSystem
                 }
                 else
                 {
-                    this.carReportTableAdapter.FillByOrAll(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchCarName.Text, tbSearchAtuthor.Text);
+                    this.carReportTableAdapter.FillByOrAll(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), tbSearchAtuthor.Text, CarMakerCheck(groupBox3), tbSearchCarName.Text);
                 }
             }
             //AND検索
@@ -460,7 +460,7 @@ namespace CarReportSystem
                 }
                 else
                 {
-                    this.carReportTableAdapter.FillByAndAll(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), CarMakerCheck(groupBox3), tbSearchCarName.Text, tbSearchAtuthor.Text);
+                    this.carReportTableAdapter.FillByAndAll(this.infosys202023DataSet.CarReport, dateTimeSearch.Value.ToString(), tbSearchAtuthor.Text, CarMakerCheck(groupBox3), tbSearchCarName.Text);
                 }
             }
         }
